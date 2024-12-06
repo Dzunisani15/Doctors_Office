@@ -24,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'markknightmk5@gmail.com'; 
+        $mail->Username = 'the senders email here'; 
         // $mail->Password = $_ENV['EMAIL_PASSWORD'];
-        $mail->Password = 'sbig ofxg qbuh nkkh';    
+        $mail->Password = 'the emails app password here';    
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Sender and Recipient
-        $mail->setFrom('markknightmk5@gmail.com', 'Mark');
+        $mail->setFrom('the senders email here', 'the name of the sender here');
         $mail->addAddress($patientEmail, $patientName);
 
         // Email Content
@@ -67,16 +67,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #fff;
+            /* background-color: #fff; */
+            background: linear-gradient(135deg, #edd8d9, #edccce);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             color: #333;
         }
 
-        header {
+        /* header {
             background-color: #ff0000;
             color: white;
             padding: 15px;
             text-align: center;
-        }
+        } */
 
         .container {
             margin: 20px auto;
@@ -84,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 20px;
             border: 1px solid #ff0000;
             border-radius: 8px;
-            background-color: #ffe5e5;
+            background-color: white;
         }
 
         h1 {
@@ -168,13 +171,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
     </div>
-
-    <script>
-       
-
-        
-        
-
-    </script>
 </body>
 </html>

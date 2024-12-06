@@ -32,11 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['user_type'] = $userType;
 
     if ($userType === 'admin') {
-        // Prepare query for Doctor login credentials
+        // Prepare query for Doctor login credentials (admin = doctor)
         $stmt = $pdo->prepare("SELECT * FROM login_credentials_doctor WHERE username = :username AND password = :password");
+        
     } else {
-        // Prepare query for Patient login credentials
+        // Prepare query for Patient login credentials (user = patient)
         $stmt = $pdo->prepare("SELECT * FROM login_credentials_patient WHERE username = :username AND password = :password");
+        
     }
 
     try {
@@ -78,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff0000, #ffe5e5);
+            background: linear-gradient(135deg, #edd8d9, #edccce);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -103,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         .input-field {
-            width: 100%;
+            width: 90%;
             padding: 12px;
             margin-bottom: 20px;
             border: 1px solid #ff0000;
