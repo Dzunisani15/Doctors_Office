@@ -24,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'markknightmk5@gmail.com'; 
+        $mail->Username = 'the senders email here'; 
         // $mail->Password = $_ENV['EMAIL_PASSWORD'];
-        $mail->Password = 'sbig ofxg qbuh nkkh';    
+        $mail->Password = 'the emails app password here';    
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Sender and Recipient
-        $mail->setFrom('markknightmk5@gmail.com', 'Mark');
+        $mail->setFrom('the senders email here', 'the name of the sender here');
         $mail->addAddress($patientEmail, $patientName);
 
         // Email Content
@@ -64,38 +64,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Prescription Generator</title>
     <style>
         body, html {
-            margin: 0;
+            /* margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif; */
+            /* background-color: #fff;  */
+            /* background: linear-gradient(135deg, #edd8d9, #edccce); */
+            /* border-radius: 20px; */
+            /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
+            /* color: #333; */
+
             font-family: Arial, sans-serif;
-            background-color: #fff;
+            /* background: linear-gradient(135deg, #edd8d9, #edccce); */
+            background: linear-gradient(to bottom, #ffdddd, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             color: #333;
+            
         }
 
-        header {
+        /* header {
             background-color: #ff0000;
             color: white;
             padding: 15px;
             text-align: center;
-        }
+
+        } */
 
         .container {
-            margin: 20px auto;
-            max-width: 600px;
-            padding: 20px;
-            border: 1px solid #ff0000;
-            border-radius: 8px;
-            background-color: #ffe5e5;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            
         }
 
-        h1 {
-            text-align: center;
+        /* h1 {
             color: #ff0000;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        } */
+
+        h2 {
+            margin-bottom: 20px;
+            color: #d32f2f;
         }
 
         form {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            text-align: center;
         }
 
         label {
@@ -103,10 +128,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         input, textarea {
-            width: 100%;
-            padding: 10px;
+            /* width: 90%;
+            padding: 12px;
             border: 1px solid #ff0000;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 16px;
+            transition: 0.3s; */
+
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
             border-radius: 8px;
+            font-size: 16px;
         }
 
         textarea {
@@ -115,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         button {
             padding: 10px;
-            background-color: #ff0000;
+            background-color: #d32f2f;
             color: white;
             border: none;
             border-radius: 8px;
@@ -144,20 +180,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <header>
-        <h1>Prescription Generator</h1>
+        <!-- <h1>Prescription Generator</h1> -->
     </header>
 
     <div class="container">
-        <h1>Generate Prescription</h1>
+        <h2>Prescription Generator</h2>
         <form class="send_prescriptions "method="POST" action="">
-            <label for="patient_name">Patient Name</label>
-            <input class="name" type="text" id="patient_name" name="patient_name" required>
+            <!-- <label for="patient_name">Patient Name</label> -->
+            <input class="name" type="text" id="patient_name" name="patient_name" placeholder="Patient Name" required>
 
-            <label for="patient_email">Patient Email</label>
-            <input class="email" type="email" id="patient_email" name="patient_email" required>
+            <!-- <label for="patient_email">Patient Email</label> -->
+            <input class="email" type="email" id="patient_email" name="patient_email" placeholder="Patient Email" required>
 
-            <label for="prescription_details">Prescription Details</label>
-            <textarea id="prescription_details" name="prescription_details" rows="6" required></textarea>
+            <!-- <label for="prescription_details">Prescription Details</label> -->
+            <textarea id="prescription_details" name="prescription_details" rows="6" placeholder="Prescription Details" required></textarea>
 
             <button type="submit">Send Prescription</button>
         </form>
@@ -168,13 +204,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
     </div>
-
-    <script>
-       
-
-        
-        
-
-    </script>
 </body>
 </html>

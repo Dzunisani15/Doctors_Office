@@ -12,15 +12,6 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
 // Get the user type from the session
 $userType = $_SESSION['user_type'];
 
-
-if (htmlspecialchars($userType) === 'admin'){
-
-}
-else{ 
-    // Redirect to the next page (e.g., main.php)
-    header("Location: main2.php");
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -36,14 +27,17 @@ else{
         /* General Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* font-family: Arial, sans-serif; */
             margin: 0;
-            background: whitesmoke;
+            /* background: whitesmoke; */
+            background: linear-gradient(135deg, #edd8d9, #edccce);
             color: red;
         }
 
         /* Header Section */
         .header {
             background-color: red;
+            /* background-color: #bf2424; */
             padding: 1px;
             /* text-align: center; */
             color: white;
@@ -62,48 +56,6 @@ else{
 
 /*---------------------------------------------------------------------------------------------------------------------*/
 
-        /* Hamburger menu styling */
-        .hamburger {
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            margin: 5px 0;
-            background-color: #333; /* Color of the lines */
-            transition: all 0.3s ease;
-        }
-
-        /* Hide the menu initially */
-        .menu {
-            display: none;
-            background-color: #f8f8f8; /* Background for the menu */
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            position: absolute;
-            top: 50px;
-            left: 10px;
-            width: 200px;
-        }
-
-        .menu a {
-            display: block;
-            padding: 8px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .menu a:hover {
-            background-color: #ddd;
-        }
-
-        /* Show the menu when active */
-        .hamburger.active + .menu {
-            display: block;
-        }
 
 /*---------------------------------------------------------------------------------------------------------------------*/
 
@@ -265,30 +217,18 @@ else{
     
     <!-- Header Section -->
     <div class="header">
-        <!-- Hamburger button -->
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
 
-        <!-- Dropdown menu -->
-        <div class="menu">
-            <a href="testing.php">Option 1</a>
-            <a href="#option2">Option 2</a>
-            <a href="#option3">Option 3</a>
-        </div>
-
-        <img src="..\resources\logo.png" alt="Clinic Logo">
+        <img src="resources\logo.png" alt="Clinic Logo">
         Dzunisani Clinic
     </div>
 
-    <div class="video-background">
+        <!-- it runs a video in the background -->
+    <!-- <div class="video-background">
         <video autoplay muted loop playsinline>
-            <source src="../resources/doctor2.mp4" type="video/mp4">
+            <source src="resources/doctor2.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-    </div>
+    </div> -->
 
     <!-- Main Content Section -->
     <div class="main-content">
@@ -297,29 +237,46 @@ else{
         
         <!-- Options Section -->
         <div class="options">
-            <!-- <div class="option-card" onclick="location.href='login1.php'">
-                <img src="../resources/appointment.png" alt="Appointment Icon">
-                <h3>Scheduled Appointments</h3>
-                <p>Your scheduled appointments with patients.</p>
-            </div> -->
+            <?php if ($userType === 'admin') : ?>
+                <div class="option-card" onclick="location.href='doctors_appointments.php'">
+                    <img src="resources/appointment.png" alt="patient profile Icon">
+                    <h3>Scheduled Appointments</h3>
+                    <p>Shows scheduled appointments for today.</p>
+                </div>
+            <?php endif; ?>
 
-            <div class="option-card" onclick="location.href='patient_profile.php'">
-                <img src="../resources/appointment.png" alt="patient profile Icon">
-                <h3>Scheduled Appointments</h3>
-                <p>Shows scheduled appointments for today.</p>
-            </div>
+            <?php if ($userType === 'admin') : ?>
+                <div class="option-card" onclick="location.href='prescription_generator.php'">
+                    <img src="resources/prescription2.jpg" alt="Services Icon">
+                    <h3>Prescription Generator</h3>
+                    <p>Generates a prescription and sends it to the patient.</p>
+                </div>
+            <?php endif; ?>
 
-            <div class="option-card" onclick="location.href='prescription_generator.php'">
-                <img src="../resources/prescription2.jpg" alt="Services Icon">
-                <h3>Prescription Generator</h3>
-                <p>Generates a prescription and sends it to the patient.</p>
-            </div>
+            <?php if ($userType === 'admin') : ?>
+                <div class="option-card" onclick="location.href='patient_file.php'">
+                    <img src="resources/medical_record.jpg" alt="Services Icon">
+                    <h3>Medical Records</h3>
+                    <p>Displays and edits a patients medical file.</p>
+                </div>
+            <?php endif; ?>
 
-            <div class="option-card" onclick="location.href='patient_file.php'">
-                <img src="../resources/medical_record.jpg" alt="Services Icon">
-                <h3>Medical Records</h3>
-                <p>Displays and edits a patients medical file.</p>
-            </div>
+            <!-- For The Patient -->
+            <?php if ($userType === 'user') : ?>
+                <div class="option-card" onclick="location.href='appointment.php'">
+                    <img src="resources/appointment.png" alt="patient profile Icon">
+                    <h3>Appointment Scheduler</h3>
+                    <p>schedules appointment for patient.</p>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($userType === 'user') : ?>
+                <div class="option-card" onclick="location.href='logged_in_patient_records.php'">
+                    <img src="resources/medical_record.jpg" alt="Services Icon">
+                    <h3>My Medical Records</h3>
+                    <p>Displays the logged in patient.</p>
+                </div>
+            <?php endif; ?>
 
             </div>
 
@@ -328,22 +285,5 @@ else{
     <div class="footer">
         © 2024 Dzunisani Clinic. All rights reserved.
     </div>
-
-    <script>
-        // Wait for the page to load completely
-        window.onload = function () {
-            const splashScreen = document.getElementById('splash-screen');
-
-            setTimeout(() => {
-                splashScreen.style.display = 'none'; // Remove from view
-            }, 2000); // Matches the transition duration    
-        };
-
-        // Function to toggle the menu
-        function toggleMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            hamburger.classList.toggle('active');
-        }
-    </script>
 </body>
 </html>

@@ -42,24 +42,41 @@ if ($selectedPatientId) {
     <title>Patient Profile</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            /* font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fff;
+            color: #333; */
+
+            font-family: Arial, sans-serif;
+            /* background: linear-gradient(135deg, #edd8d9, #edccce); */
+            background: linear-gradient(to bottom, #ffdddd, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             color: #333;
         }
 
-        header {
+        /* header {
             background-color: #ff0000;
             color: white;
             padding: 15px;
             text-align: center;
-        }
+        } */
 
         .container {
-            margin: 20px auto;
+            /* margin: 20px auto;
             max-width: 800px;
-            padding: 20px;
+            padding: 20px; */
+
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
         }
 
         .search {
@@ -71,13 +88,13 @@ if ($selectedPatientId) {
         .search input {
             flex-grow: 1;
             padding: 10px;
-            border: 1px solid #ff0000;
+            border: 1px solid #d32f2f ;
             border-radius: 8px;
         }
 
         .search button {
             padding: 10px 20px;
-            background-color: #ff0000;
+            background-color: #d32f2f;
             color: white;
             border: none;
             border-radius: 8px;
@@ -96,7 +113,7 @@ if ($selectedPatientId) {
         .patient-list li {
             margin: 10px 0;
             padding: 10px;
-            border: 1px solid #ff0000;
+            border: 1px solid #d32f2f;
             border-radius: 8px;
             background-color: #ffe5e5;
             cursor: pointer;
@@ -108,7 +125,7 @@ if ($selectedPatientId) {
         }
 
         .profile {
-            border: 1px solid #ff0000;
+            border: 1px solid #d32f2f;
             padding: 20px;
             border-radius: 8px;
             background-color: #ffe5e5;
@@ -116,20 +133,26 @@ if ($selectedPatientId) {
 
         .profile h2 {
             margin-top: 0;
-            color: #ff0000;
+            color: #d32f2f;
         }
 
         .profile p {
             margin: 5px 0;
         }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #d32f2f;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Patient Medical Profile</h1>
-    </header>
+    <!-- <header>
+        <h2>Patient Medical Profile</h2>
+    </header> -->
 
     <div class="container">
+        <h2>Patient Medical Profile</h2>
         <!-- Search Bar -->
         <form class="search" method="GET" action="">
             <input type="text" name="search" placeholder="Search by name or ID" value="<?= htmlspecialchars($searchQuery) ?>">
@@ -150,7 +173,7 @@ if ($selectedPatientId) {
         <!-- Patient Profile -->
         <?php if ($selectedPatient): ?>
             <div class="profile">
-                <h2>Medical Profile</h2>
+                <!-- <h2>Medical Profile</h2> -->
                 <p><strong>Name:</strong> <?= htmlspecialchars($selectedPatient['name']) ?></p>
                 <p><strong>Age:</strong> <?= htmlspecialchars($selectedPatient['age']) ?></p>
                 <p><strong>Email:</strong> <?= htmlspecialchars($selectedPatient['email']) ?></p>
