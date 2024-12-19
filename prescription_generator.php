@@ -24,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'the senders email here'; 
+        $mail->Username = 'markknightkm5@gmail.com'; 
         // $mail->Password = $_ENV['EMAIL_PASSWORD'];
-        $mail->Password = 'the emails app password here';    
+        $mail->Password = 'sbig ofxg qbuh nkkh';    
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Sender and Recipient
-        $mail->setFrom('the senders email here', 'the name of the sender here');
+        $mail->setFrom('markknightkm5@gmail.com', 'Mark');
         $mail->addAddress($patientEmail, $patientName);
 
         // Email Content
